@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <style>
+
+  .bar {
+    fill: steelblue;
+  }
+
+  .bar:hover {
+    fill: brown;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  .x text {
+    display: none;
+  }
+
+  </style>
+</head>
+<body>
+
+<div id="chart"></div>
+<div id="console"></div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 60},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear().range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("salaries_gender.csv", function(error, data) {
+  if (error) throw error;
+
+  data = data.filter(function(d) {
+    d.salary = parseInt(d.salary, 10);
+    return d.gender != "Unknown";
+  });
+
+  data.sort(function(a, b) {
+    return b.salary - a.salary;
+  });
+
+  var top100 = data.slice(0, 100);
+
+  x.domain(top100.map(function(d) { return d.employee; }));
+  y.domain([0, d3.max(top100, function(d) { return d.salary; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+/*
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Frequency");
+*/
+
+  svg.selectAll(".bar")
+      .data(top100)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.employee); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.salary); })
+      .attr("height", function(d) { return height - y(d.salary); })
+      .style("fill", function(d) {
+        return d.gender == "Female"? "red" : "blue";
+      })
+      .on("mouseover", function(d) {
+        d3.select("#console").html("<strong>" + d.employee + "</strong>. " + d.title + ", " + d.division + ": $" + addCommas(d.salary));
+      })
+
+});
+
+//http://stackoverflow.com/questions/6392102/add-commas-to-javascript-output
+function addCommas(nStr)
+{
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+</script>

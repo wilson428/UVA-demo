@@ -1,0 +1,72 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1805,         62]
+NotebookOptionsPosition[      1445,         44]
+NotebookOutlinePosition[      1801,         60]
+CellTagsIndexPosition[      1758,         57]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", "NotebookDirectory", "]"}]], "Code",
+ CellChangeTimes->{{3.6673848892355547`*^9, 3.667384901416562*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"SetDirectory", "::", "fstr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"File specification \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"NotebookDirectory\\\"}]\\)\[NoBreak] is not a \
+string of one or more characters. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/fstr\\\", \
+ButtonNote -> \\\"SetDirectory::fstr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.667384903969809*^9, 3.667384904327455*^9}}],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", "NotebookDirectory", "]"}]], "Output",
+ CellChangeTimes->{{3.667384903971986*^9, 3.667384904331563*^9}}]
+}, Open  ]]
+},
+WindowSize->{808, 705},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 25, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 148, 2, 50, "Code"],
+Cell[731, 26, 547, 11, 24, "Message"],
+Cell[1281, 39, 148, 2, 28, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
